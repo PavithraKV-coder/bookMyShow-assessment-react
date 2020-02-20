@@ -4,13 +4,18 @@ import seats from '../.././assests/seats.json';
 
 export default class SeatPickers extends Component {
     state = {
-        loading: false
+        loading: false,
+        isEnabled: false,
+        showMessage: false
       };
-    
+      onClick() {
+        alert("Success! Your ticket has been booked now...")
+      }
       addSeatCallback = ({ row, number, id }, addCb) => {
         this.setState(
           {
-            loading: true
+            loading: true,
+            isEnabled: true
           },
           async () => {
             await new Promise(resolve => setTimeout(resolve, 1500));
@@ -22,37 +27,11 @@ export default class SeatPickers extends Component {
         );
       };
     
-      addSeatCallbackContinousCase = (
-        { row, number, id },
-        addCb,
-        params,
-        removeCb
-      ) => {
-        this.setState(
-          {
-            loading: true
-          },
-          async () => {
-            if (removeCb) {
-              await new Promise(resolve => setTimeout(resolve, 750));
-              console.log(
-                `Removed seat ${params.number}, row ${params.row}, id ${params.id}`
-              );
-              removeCb(params.row, params.number);
-            }
-            await new Promise(resolve => setTimeout(resolve, 750));
-            console.log(`Added seat ${number}, row ${row}, id ${id}`);
-            const newTooltip = `tooltip for id-${id} added by callback`;
-            addCb(row, number, id, newTooltip);
-            this.setState({ loading: false });
-          }
-        );
-      };
-    
       removeSeatCallback = ({ row, number, id }, removeCb) => {
         this.setState(
           {
-            loading: true
+            loading: true,
+            isEnabled: false
           },
           async () => {
             await new Promise(resolve => setTimeout(resolve, 1500));
@@ -70,7 +49,6 @@ export default class SeatPickers extends Component {
         const { loading } = this.state;
         return (
           <div>
-            {/* <h1>Seat Picker</h1> */}
             <div style={{ marginTop: "10px" }}>
               <SeatPicker
                 addSeatCallback={this.addSeatCallback}
@@ -84,21 +62,12 @@ export default class SeatPickers extends Component {
                 tooltipProps={{ multiline: true }}
               />
             </div>
-            {/* <h1>Seat Picker Continuous Case</h1>
-            <div style={{ marginTop: "100px" }}>
-              <SeatPicker
-                addSeatCallback={this.addSeatCallbackContinousCase}
-                removeSeatCallback={this.removeSeatCallback}
-                rows={rows}
-                maxReservableSeats={3}
-                alpha
-                visible
-                selectedByDefault
-                loading={loading}
-                tooltipProps={{ multiline: true }}
-                continuous
-              />
-            </div> */}
+            <br />
+            <button className="btn btn-success" disabled={!this.state.isEnabled}
+                    onClick={this.onClick.bind(this)}>Book now</button>
+            {/* <div className="mb-2">
+            {this.state.showMessage ? ( <div>Success! Your ticket has been booked now </div>) : (<div>Call</div>)}
+              </div> */}
           </div>
         );
       }
