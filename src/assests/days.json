@@ -1,0 +1,31 @@
+[
+    {
+      "number": 1,
+      "letter": "Mon"
+    },
+    {
+      "number": 2,
+      "letter": "Tue"
+    },
+    {
+      "number": 3,
+      "letter": "Wed"
+    },
+    {
+      "number": 4,
+      "letter": "Thu"
+    },
+    {
+      "number": 5,
+      "letter": "Fri"
+    },
+    {
+      "number": 6,
+      "letter": "Sat"
+    },
+    {
+      "number": 7,
+      "letter": "Sun"
+    }
+  ]
+  
