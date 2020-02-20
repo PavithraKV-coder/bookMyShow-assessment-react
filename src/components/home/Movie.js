@@ -43,10 +43,8 @@ export class Movie extends Component {
           <div className="row">
             <div className="card card-body bg-dark my-3 ml-3">
               <div className="col-md-12">
-                <p className="text-light"><h3>About </h3>
-                  {movie.Plot}
-                </p>
-                <hr />
+                <h3 className="text-light">About </h3>
+                  <p className="text-light">{movie.Plot}</p>
                 <ul className="list-group">
                   <li className="list-group-item">
                     <strong>Genre:</strong> {movie.Genre}
