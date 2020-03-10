@@ -1,4 +1,5 @@
 import {
+  SEARCH_MOVIE,
   FETCH_MOVIES,
   FETCH_MOVIE,
   LOADING
@@ -13,6 +14,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case SEARCH_MOVIE:
+      return {
+        ...state,
+        text: action.payload,
+        loading: false
+      };
     case FETCH_MOVIES:
       return {
         ...state,
