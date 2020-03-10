@@ -10,13 +10,11 @@ import {
 
 export class SearchForm extends Component {
   onChange = e => {
-      console.log(e.target.value)
     this.props.searchMovie(e.target.value);
   };
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.props.text)
     this.props.fetchMovies(this.props.text);
     this.props.setLoading();
   };
