@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import MoviesContainer from './MoviesContainer';
 import { fetchMovies} from '../../actions/fetchActions';
 import Spinner from '../layout/Spinner';
+import SearchForm from './SearchForm';
 
 
 export class Landing extends Component {
   
-  componentWillMount(){
+  componentDidMount(){
     this.props.fetchMovies('movie');
   }
   
@@ -15,6 +16,7 @@ export class Landing extends Component {
     const { loading } = this.props;
     return (
       <div className="container">
+        <SearchForm />
         {loading ? <Spinner /> : <MoviesContainer />}
       </div>
     );
